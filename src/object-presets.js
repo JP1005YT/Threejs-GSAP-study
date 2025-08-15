@@ -17,6 +17,16 @@ export class ObjectPreset{
         }
         return light;
     }
+    addPointLight(posX, posY, posZ, color, intensity = 1, name = null){
+        const light = new THREE.PointLight(color, intensity);
+        light.position.set(posX, posY, posZ);
+        if(name){
+            this.objects[name] = light;
+        }else{
+            this.objects.light = light;
+        }
+        return light;
+    }
 
     addSphere(posX, posY, posZ, radius, material, name = null){
         const geometry = new THREE.SphereGeometry(radius, 32, 32);
