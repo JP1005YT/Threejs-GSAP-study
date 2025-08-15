@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 
-import { Fire } from './../libs/Fire.js';
+
 
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
@@ -12,6 +12,7 @@ export function objectHandler(scene) {
     const loader = new GLTFLoader();
     const objectPresenter = new ObjectPreset();
     let pot; // Variável para armazenar o objeto pot
+    let fire, fire2;
 
 
     ModelsLoader(scene, 'caveira').then((loadedCaveira) => {
@@ -19,28 +20,14 @@ export function objectHandler(scene) {
         objectPresenter.addObject(loadedCaveira);
     });
 
-    objectPresenter.addLight(1, 1, 5 , 'luz2');
-    // objectPresenter.addLight(1, 1, -2);
+    // objectPresenter.addLight(1, 1, 5 , 'luz2');
     
-    var fireTex = new THREE.TextureLoader().load(
-        "./../models/textures/fire.png"
-    );
-    
-    var wireframeMat = new THREE.MeshBasicMaterial({
-        color: new THREE.Color(0xffffff),
-        wireframe: true,
-    });
-    
-    var fire = new Fire(fireTex, new THREE.Color(0xff0000));
-    
-    var wireframe = new THREE.Mesh(fire.geometry, wireframeMat.clone());
-    fire.add(wireframe);
-    wireframe.visible = false;
-    fire.scale.set(3, 5, 3);
-    fire.position.set(-4.4, 14.26, 10.6);
-    objectPresenter.addPointLight(-4.4, 14.26, 10.6, 0xff0000, 1);
-
-    scene.add(fire);
+    fire = objectPresenter.addFire(MeshLoader().firetexture,-4.4, 15.26, 10.6);
+    fire2 = objectPresenter.addFire(MeshLoader().firetexture,4.4, 15.26, 10.5,'fire2');
+    console.log(objectPresenter.objects);
+    objectPresenter.addPointLight(-4.4, 14.26, 10.6, 0x00ff00, 30);
+    objectPresenter.addPointLight(4.4, 14.26, 10.5, 0x00ff00, 30,'luz2');
+    objectPresenter.addPointLight(0, 5.79, 17, 0x00ff00, 30,'luz3');
 
     
 
@@ -53,27 +40,6 @@ export function objectHandler(scene) {
         scene.add(objectPresenter.objects[key]);
     });
 
-     var controller = {
-        speed: 1.0,
-        magnitude: 3.8,
-        lacunarity: 10,
-        gain: 0.0,
-        noiseScaleX: 5,
-        noiseScaleY: 5,
-        noiseScaleZ: 5,
-        wireframe: false,
-      };
-
-      fire.material.uniforms.magnitude.value = controller.magnitude;
-        fire.material.uniforms.lacunarity.value = controller.lacunarity;
-        fire.material.uniforms.gain.value = controller.gain;
-        fire.material.uniforms.noiseScale.value = new THREE.Vector4(
-            controller.noiseScaleX,
-            controller.noiseScaleY,
-            controller.noiseScaleZ,
-            0.3
-        );
-
       const clock = new THREE.Clock();
 
       function update() {
@@ -83,8 +49,9 @@ export function objectHandler(scene) {
             //   pot.rotation.y += 0.003;
             }
 
-        var t = clock.getElapsedTime() * controller.speed;
+        var t = clock.getElapsedTime() * 1;
         fire.update(t);
+        fire2.update(t);
     }
 
     return {

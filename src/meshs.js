@@ -12,7 +12,10 @@ export function MeshLoader(){
                 texture.wrapS = THREE.RepeatWrapping;
                 texture.wrapT = THREE.RepeatWrapping;
                 texture.repeat.set(5, 5);
-            })
+            }),
+            fire : new THREE.TextureLoader().load(
+                "./../models/textures/fire.png"
+            )
         }
     }
 
@@ -50,11 +53,11 @@ export function MeshLoader(){
             map: TextureLoader().piso,
         }),
         wirefire : new THREE.MeshPhysicalMaterial({
-            color: new THREE.Color(0xff0000),
+            color: new THREE.Color(0xffffff),
             wireframe: true
         }),
         firetexture : new THREE.TextureLoader().load(
-            "models/textures/fire.png"
+            "models/textures/firetex-green.png"
         ),
         baseVerde : new THREE.MeshBasicMaterial( {
              color: 0x00ff00 
