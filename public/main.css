@@ -1,0 +1,231 @@
+@import url('https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html ,body{
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+}
+
+#root-window{
+    height: 100%;
+}
+
+#render-target{
+    height: 100%;
+}
+
+#ui{
+    position: absolute;
+    top: 0;
+    z-index: 999;
+    display: block;
+
+    .menu, .submenu{
+        /* Melhorar essa parte detectar menu e submenu automatico */
+        display: none;
+        position: absolute;
+        width: 100vw;
+        height: 100vh;
+        padding: 40px;
+        backdrop-filter: blur(5px);
+        background-color: rgba(0, 0, 0, 0.1) !important;
+        user-select: none;
+        &.active{
+            display: flex;
+            flex-direction: column;
+        }
+    }
+
+    /* Menus */
+
+    .admin-panel{
+        width: 100%;
+        height: 300px;
+        background: red;
+        border-bottom-right-radius: 25px;
+        display: none;
+    }
+
+    .main-menu{
+        h1{
+            font-size: 5rem;
+        }
+        li{
+            transition: 50ms;
+            list-style: none;
+            font-size: 2.5rem;
+            padding: 15px;
+            width: 350px;
+            margin-bottom: 15px;
+            backdrop-filter: blur(50px);
+            background-color: rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            color: white;
+            &:hover{
+                border: none;
+                border-bottom: 2px solid white;
+            }
+        }
+
+    }
+
+    .config-menu{
+        justify-content:center;
+        align-items: center;
+    }
+
+    .config-menu .box{
+        width: 30%;
+        min-width: calc( 10% + 300px);
+        height: 400px;
+        background: rgba(0, 0, 0, 0.3);
+        color: #fff;
+        border-radius: 25px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        .icon{
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            font-size: 48px;
+            top: 0;
+            left: 0;
+            margin: 12px;
+        }
+        span{
+            width: 100%;
+            background: red;
+            padding: 25px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            input{
+                margin: 12px;
+                width: 24px;
+                height: 24px;
+            }
+        }
+    }
+
+    .molecular-menu{
+        justify-content: center;
+        flex-direction: row !important;
+        .left{
+            border-radius: 25px;
+            margin: 0px 14px;
+            width: 15%;
+            height: 100%;
+            background: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+            div{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 180px;
+                height: 180px;
+                border-radius: 100%;
+                box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.5);
+                cursor: pointer;
+            }
+            .eletron{
+                background: blue;
+            }
+            .proton{
+                background: red;
+            }
+            .neutron{
+                background: green;
+            }
+        }
+        .right{
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            border-radius: 25px;
+            width: 85%;
+            height: 100%;
+            background: #fff;
+            margin: 0px 14px;
+        }
+    }
+
+    /* Geral */
+    .title{
+        font-family: "Rock Salt", cursive;
+        font-weight: 400;
+        font-style: normal;
+        display: inline-block;
+        user-select: none;
+        margin-bottom: 24px;
+    }
+    .blue{
+        color : #2745FC
+    }
+    .red{
+        color : #FC1A4A
+    }
+}
+
+/* Estilo para o molecular sandbox */
+#molecular-sandbox {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    border: 2px solid #000;
+    border-radius: 50%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle, #f0f0f0, #d0d0d0);
+    overflow: hidden;
+}
+
+/* Núcleo (prótons e nêutrons) */
+#molecular-sandbox .proton,
+#molecular-sandbox .neutron {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    position: absolute;
+}
+
+#molecular-sandbox .proton {
+    background-color: red;
+}
+
+#molecular-sandbox .neutron {
+    background-color: blue;
+}
+
+/* Elétrons em órbita */
+#molecular-sandbox .electron {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: yellow;
+    position: absolute;
+    animation: orbit 5s linear infinite;
+}
+
+/* Animação para órbita dos elétrons */
+@keyframes orbit {
+    0% {
+        transform: rotate(0deg) translateX(120px) rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg) translateX(120px) rotate(-360deg);
+    }
+}

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Three.js</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="public/main.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <div id="root-window">
+        <div id="render-target"></div>
+    </div>
+    <div id="ui">
+        <div class="admin-panel menu">
+            <button id="test1">Olhar 1</button>
+            <button id="test2">Olhar 2</button>
+            <button id="test3">GetPosCAM</button>
+            <button id="test4">Enable FreeCAM</button>
+        </div>
+    </div>
+    <!-- <script src="./libs/three.js"></script>
+    <script src="./libs/Fire.js"></script> -->
+    <script src="public/ui.js"></script>
+    <script type="module" defer>
+        import { createScene } from './src/scene.js';
+
+        document.addEventListener('contextmenu', event => event.preventDefault());
+
+        
+        window.onload = () => {
+            window.scene = createScene();
+            document.addEventListener('mousedown', window.scene.onMouseDown, false);
+            document.addEventListener('mouseup', window.scene.onMouseUp, false);
+            document.addEventListener('mousemove',function(e){
+                if(e.target.getAttribute('data-engine')){
+                    window.scene.onMouseMove(e)
+                }
+            }, false);
+                
+            window.scene.start();
+
+            // Adiciona o listener de evento ao botão após a criação da cena
+            document.getElementById('test1').onclick = () => {
+                window.scene.onSwitchCamera({
+                    posX: 0,
+                    posY: 18,
+                    posZ: 32,
+                    lookX: 0,
+                    lookY: 10,
+                    lookZ: 0
+                });
+            };
+
+            document.getElementById('test2').onclick = () => {
+                window.scene.onSwitchCamera({
+                    posX: -5,
+                    posY: 1,
+                    posZ: 0,
+                    lookX: 0,
+                    lookY: 0,
+                    lookZ: 0
+                });
+            };
+
+            document.querySelector('#test3').onclick = () => {
+                console.log(window.scene.getCamera().position)
+            };
+
+            document.querySelector('#test4').onclick = () => {
+                window.scene.turnOnCamera()
+            };
+
+
+            document.getElementById('test1').click()
+        };
+    </script>
+</body>
+</html>
