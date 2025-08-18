@@ -16,6 +16,10 @@ export function objectHandler(scene) {
 
 
     ModelsLoader(scene, 'caveira').then((loadedCaveira) => {
+        // pot = loadedCaveira
+        objectPresenter.addObject(loadedCaveira);
+    });
+    ModelsLoader(scene, 'queixo').then((loadedCaveira) => {
         pot = loadedCaveira
         objectPresenter.addObject(loadedCaveira);
     });
@@ -42,11 +46,22 @@ export function objectHandler(scene) {
 
       const clock = new THREE.Clock();
 
+      let invert = false; // Move invert outside update to persist its state
+
       function update() {
           let objects = objectPresenter.objects;
-          
           if (pot) {
-            //   pot.rotation.y += 0.003;
+              if(!invert){
+                pot.rotation.x += 0.001;
+                if(pot.rotation.x > Math.PI / 16) {
+                    invert = true;
+                }
+              }else{
+                  pot.rotation.x -= 0.001;
+                  if(pot.rotation.x < 0) {
+                      invert = false;
+                  }
+              }
             }
 
         var t = clock.getElapsedTime() * 1;

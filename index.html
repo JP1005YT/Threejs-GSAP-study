@@ -1,79 +1,131 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Three.js</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="public/main.css">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-</head>
-<body>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      media="screen"
+      href="public/main.css"
+    />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
     <div id="root-window">
-        <div id="render-target"></div>
+      <div id="render-target"></div>
     </div>
-    <div id="ui">
+    <div id="smooth-wrapper">
+      <div id="ui">
         <div class="admin-panel menu">
-            <button id="test1">Olhar 1</button>
-            <button id="test2">Olhar 2</button>
-            <button id="test3">GetPosCAM</button>
-            <button id="test4">Enable FreeCAM</button>
+          <button id="test1">Olhar 1</button>
+          <button id="test2">Olhar 2</button>
+          <button id="test3">GetPosCAM</button>
+          <button id="test4">Enable FreeCAM</button>
         </div>
+        <section class="screen" id="s1">
+            <h1>Teste</h1>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Suscipit quibusdam amet hic id? Illo vero modi omnis molestiae accusantium, dicta quia accusamus, porro soluta temporibus libero? Reprehenderit, consequuntur at. Officia?</p>
+        </section>
+        <section class="screen" id="s2">
+            <h1>Teste</h1>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Suscipit quibusdam amet hic id? Illo vero modi omnis molestiae accusantium, dicta quia accusamus, porro soluta temporibus libero? Reprehenderit, consequuntur at. Officia?</p>
+        </section>
+        <section class="screen" id="s3">
+            <h1>Teste</h1>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Suscipit quibusdam amet hic id? Illo vero modi omnis molestiae accusantium, dicta quia accusamus, porro soluta temporibus libero? Reprehenderit, consequuntur at. Officia?</p>
+        </section>
+        <section class="screen" id="s4">
+            <h1>Teste</h1>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Suscipit quibusdam amet hic id? Illo vero modi omnis molestiae accusantium, dicta quia accusamus, porro soluta temporibus libero? Reprehenderit, consequuntur at. Officia?</p>
+        </section>
+      </div>
+      <nav>
+        <ul>
+          <li class="active">
+            <i class="bx bxs-circle"></i>
+          </li>
+          <li>
+            <i class="bx bx-circle"></i>
+          </li>
+          <li>
+            <i class="bx bx-circle"></i>
+          </li>
+          <li>
+            <i class="bx bx-circle"></i>
+          </li>
+        </ul>
+      </nav>
     </div>
-    <script src="public/ui.js"></script>
     <script type="module" defer>
-        import { createScene } from './src/scene.js';
-
-        document.addEventListener('contextmenu', event => event.preventDefault());
-
+        import { createScene } from "./src/scene.js";
         
-        window.onload = () => {
-            window.scene = createScene();
-            document.addEventListener('mousedown', window.scene.onMouseDown, false);
-            document.addEventListener('mouseup', window.scene.onMouseUp, false);
-            document.addEventListener('mousemove',function(e){
-                if(e.target.getAttribute('data-engine')){
-                    window.scene.onMouseMove(e)
+        document.addEventListener("contextmenu", (event) =>
+        event.preventDefault()
+    );
+    
+    window.onload = () => {
+        window.scene = createScene();
+        document.addEventListener("mousedown", window.scene.onMouseDown, false);
+        document.addEventListener("mouseup", window.scene.onMouseUp, false);
+        document.addEventListener(
+            "mousemove",
+            function (e) {
+                if (e.target.getAttribute("data-engine")) {
+                    window.scene.onMouseMove(e);
                 }
-            }, false);
-                
-            window.scene.start();
-
-            // Adiciona o listener de evento ao botão após a criação da cena
-            document.getElementById('test1').onclick = () => {
-                window.scene.onSwitchCamera({
-                    posX: 0,
-                    posY: 18,
-                    posZ: 32,
-                    lookX: 0,
-                    lookY: 10,
-                    lookZ: 0
-                });
-            };
-
-            document.getElementById('test2').onclick = () => {
-                window.scene.onSwitchCamera({
-                    posX: -5,
-                    posY: 1,
-                    posZ: 0,
-                    lookX: 0,
-                    lookY: 0,
-                    lookZ: 0
-                });
-            };
-
-            document.querySelector('#test3').onclick = () => {
-                console.log(window.scene.getCamera().position)
-            };
-
-            document.querySelector('#test4').onclick = () => {
-                window.scene.turnOnCamera()
-            };
-
-
-            document.getElementById('test1').click()
-            document.getElementById('test4').click()
+            },
+            false
+        );
+        
+        window.scene.start();
+        
+        // Adiciona o listener de evento ao botão após a criação da cena
+        document.getElementById("test1").onclick = () => {
+            window.scene.onSwitchCamera({
+                posX: 0,
+                posY: 25,
+                posZ: 18,
+                lookX: 0,
+                lookY: 10,
+                lookZ: 10,
+            });
         };
+        
+        document.getElementById("test2").onclick = () => {
+            window.scene.onSwitchCamera({
+                posX: -5,
+                posY: 1,
+                posZ: 0,
+                lookX: 0,
+                lookY: 0,
+                lookZ: 0,
+            });
+        };
+        
+        document.querySelector("#test3").onclick = () => {
+            console.log(window.scene.getCamera().position);
+        };
+        
+        document.querySelector("#test4").onclick = () => {
+            window.scene.turnOnCamera();
+        };
+        
+        document.getElementById("test1").click();
+        document.getElementById("test4").click();
+    };
     </script>
-</body>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollSmoother.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+    <script src="public/animate.js"></script>
+    <script src="public/manipulator.js"></script>
+  </body>
 </html>
