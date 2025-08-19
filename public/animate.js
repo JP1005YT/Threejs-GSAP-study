@@ -11,24 +11,32 @@ setTimeout(() => {
   let initPos = [
     {
       posX: 0,
-      posY: 25,
-      posZ: 20,
+      posY: 20,
+      posZ: 30,
       lookX: 0,
       lookY: 10,
-      lookZ: 10,
+      lookZ: 15,
     },
     {
       posX: 20,
-      posY: 25,
-      posZ: 20,
+      posY: 20,
+      posZ: 30,
       lookX: 0,
       lookY: 10,
-      lookZ: 10,
+      lookZ: 15,
     },
     {
-      posX: 0,
-      posY: 15,
-      posZ: 0,
+      posX: 20,
+      posY: 20,
+      posZ: 30,
+      lookX: 0,
+      lookY: 10,
+      lookZ: 15,
+    },
+    {
+      posX: 16,
+      posY: 18,
+      posZ: 30,
       lookX: 0,
       lookY: 10,
       lookZ: 0,
@@ -59,57 +67,40 @@ setTimeout(() => {
         trigger: screen,
         end: "top",
         onUpdate: (self) => {
-          if (self.start >= 0 && self.start <= 957) {
-            infos.stage = 0;
-          }
-          if (self.start >= 957 && self.start <= 1914) {
-            infos.stage = 1;
-          }
-          if (self.start >= 1914 && self.start <= 2871) {
-            infos.stage = 2;
-          }
-          console.log(infos.stage);
-          infos.progress = self.progress.toFixed(2) * 100;
-          newvalue = { ...initPos[infos.stage]};
-          newvalue.posX = initPos[infos.stage].posX + (infos.progress * 0.2);
-          window.scene.onSwitchCamera(newvalue);
+          animate(self);
         },
         // markers: true,
         scrub: true,
       },
     });
   });
+
+  function animate(self) {
+    infos.progress = self.progress.toFixed(2) * 100;
+    switch (self.trigger.id) {
+      case "s1":
+        break;
+        case "s2":
+        infos.stage = 0;
+        newvalue = { ...initPos[infos.stage] };
+        newvalue.posX = initPos[infos.stage].posX + infos.progress * 0.2;
+        window.scene.onSwitchCamera(newvalue);
+        infos.stage = 1;
+        break;
+      case "s3":
+        infos.stage = 2;
+        newvalue = { ...initPos[infos.stage] };
+        newvalue.posX = initPos[infos.stage].posX + infos.progress * -0.4;
+        window.scene.onSwitchCamera(newvalue);
+        break;
+      case "s4":
+        infos.stage = 3;
+        newvalue = { ...initPos[infos.stage] };
+        newvalue.posY = initPos[infos.stage].posY + infos.progress * -0.4;
+        newvalue.posX = initPos[infos.stage].posX + infos.progress * -0.4;
+        newvalue.posZ = initPos[infos.stage].posZ + infos.progress * -0.4;
+        window.scene.onSwitchCamera(newvalue);
+        break;
+    }
+  }
 }, 1000);
-// console.clear();
-
-// gsap.set(".split", { opacity: 1 });
-
-// document.fonts.ready.then(() => {
-//   let containers = gsap.utils.toArray(".container");
-
-//   containers.forEach((container) => {
-//     let text = container.querySelector(".split");
-//     let animation;
-
-//     SplitText.create(text, {
-//       type: "words,lines",
-//       mask: "lines",
-//       linesClass: "line",
-//       autoSplit: true,
-//       onSplit: (instance) => {
-//         console.log("split");
-//         return gsap.from(instance.lines, {
-//           yPercent: 120,
-//           stagger: 0.1,
-//           scrollTrigger: {
-//             trigger: container,
-//             markers: true,
-//             scrub: true,
-//             start: "clamp(top center)",
-//             end: "clamp(bottom center)",
-//           },
-//         });
-//       },
-//     });
-//   });
-// });
