@@ -15,6 +15,7 @@
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
       rel="stylesheet"
     />
+    <script src="public/animate.js"></script>
   </head>
   <body>
     <div id="root-window">
@@ -22,15 +23,14 @@
     </div>
     <div id="smooth-wrapper">
       <div id="ui">
-        <div class="admin-panel menu">
-          <button id="test1">Olhar 1</button>
-          <button id="test2">Olhar 2</button>
-          <button id="test3">GetPosCAM</button>
-          <button id="test4">Enable FreeCAM</button>
-        </div>
         <section class="screen" id="s1">
           <div class="content">
-            <h1>Explorando o Futuro do Digital</h1>
+            <h1>
+              Explorando o
+              <span class="highlight"
+                ><span class="purple">Futuro</span> do Digital</span
+              >
+            </h1>
             <p class="text">
               A web está em constante transformação. Novas ferramentas tornam
               possível criar experiências cada vez mais imersivas, interativas e
@@ -40,36 +40,49 @@
           </div>
         </section>
         <section class="screen" id="s2">
-          <h1>Three.js – Transformando a Web em 3D</h1>
-          <p>
-            O Three.js é uma poderosa biblioteca JavaScript que traz o universo
-            3D para dentro dos navegadores. Ele permite criar cenários
-            tridimensionais, animações, partículas e efeitos de iluminação com
-            alto nível de realismo. Com o suporte à WebGL, o Three.js
-            possibilita que qualquer pessoa explore mundos virtuais sem precisar
-            instalar nada além do navegador.
-          </p>
+          <div class="content">
+            <h1>
+              Three.js <br />
+              Transformando a Web em 3D
+            </h1>
+            <p class="text">
+              O Three.js é uma poderosa biblioteca JavaScript que traz o
+              universo 3D para dentro dos navegadores. Ele permite criar
+              cenários tridimensionais, animações, partículas e efeitos de
+              iluminação com alto nível de realismo. Com o suporte à WebGL, o
+              Three.js possibilita que qualquer pessoa explore mundos virtuais
+              sem precisar instalar nada além do navegador.
+            </p>
+          </div>
         </section>
+
         <section class="screen" id="s3">
-          <h1>GSAP – Animações que dão vida às interfaces</h1>
-          <p>
-            O GSAP (GreenSock Animation Platform) é uma das bibliotecas mais
-            poderosas para animações em JavaScript. Ela garante fluidez,
-            performance e flexibilidade na hora de animar qualquer elemento da
-            web – desde textos e botões até gráficos complexos em SVG e objetos
-            3D.
-          </p>
+          <div class="content">
+            <h1>
+              GSAP <br />
+              Animações que dão vida às interfaces
+            </h1>
+            <p class="text">
+              O GSAP (GreenSock Animation Platform) é uma das bibliotecas mais
+              poderosas para animações em JavaScript. Ela garante fluidez,
+              performance e flexibilidade na hora de animar qualquer elemento da
+              web – desde textos e botões até gráficos complexos em SVG e
+              objetos 3D.
+            </p>
+          </div>
         </section>
         <section class="screen" id="s4">
-          <h1>Quando o 3D encontra o movimento</h1>
-          <p>
-            A combinação de Three.js e GSAP abre um universo de possibilidades
-            criativas. Com o poder do 3D aliado às animações fluidas, é possível
-            desenvolver desde sites demonstrativos até experiências digitais
-            completas, interativas e inesquecíveis. A união dessas tecnologias
-            representa o próximo passo na forma como interagimos com o conteúdo
-            na internet.
-          </p>
+          <div class="content">
+            <h1>Quando o 3D encontra o movimento</h1>
+            <p>
+              A combinação de Three.js e GSAP abre um universo de possibilidades
+              criativas. Com o poder do 3D aliado às animações fluidas, é
+              possível desenvolver desde sites demonstrativos até experiências
+              digitais completas, interativas e inesquecíveis. A união dessas
+              tecnologias representa o próximo passo na forma como interagimos
+              com o conteúdo na internet.
+            </p>
+          </div>
         </section>
       </div>
       <nav>
@@ -89,7 +102,7 @@
         </ul>
       </nav>
     </div>
-    <script type="module" defer>
+    <script type="module">
       import { createScene } from "./src/scene.js";
 
       document.addEventListener("contextmenu", (event) =>
@@ -111,40 +124,14 @@
         );
 
         window.scene.start();
-
-        // Adiciona o listener de evento ao botão após a criação da cena
-        document.getElementById("test1").onclick = () => {
-          window.scene.onSwitchCamera({
-            posX: 10,
-            posY: 20,
-            posZ: 50,
-            lookX: -30,
-            lookY: 0,
-            lookZ: 20,
-          });
-        };
-
-        document.getElementById("test2").onclick = () => {
-          window.scene.onSwitchCamera({
-            posX: -5,
-            posY: 1,
-            posZ: 0,
-            lookX: 0,
-            lookY: 0,
-            lookZ: 0,
-          });
-        };
-
-        document.querySelector("#test3").onclick = () => {
-          console.log(window.scene.getCamera().position);
-        };
-
-        document.querySelector("#test4").onclick = () => {
-          window.scene.turnOnCamera();
-        };
-
-        document.getElementById("test1").click();
-        document.getElementById("test4").click();
+        window.scene.onSwitchCamera({
+          posX: -10,
+          posY: 15,
+          posZ: 30,
+          lookX: -10,
+          lookY: 10,
+          lookZ: 10,
+        });
       };
     </script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
@@ -152,7 +139,9 @@
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollSmoother.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
-    <script src="public/animate.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/TextPlugin.min.js"></script>
     <script src="public/manipulator.js"></script>
+    <script src="public/animate.js"></script>
   </body>
 </html>

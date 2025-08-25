@@ -98,6 +98,7 @@ export function createCamera(gameWindow){
         cameraAzimuth = 0;
 
         camera.lookAt(new THREE.Vector3(lookX,lookY,lookZ))
+        // camera.rotation.set(lookX, lookY, lookZ);
     }
 
     function updateCameraPosition(){

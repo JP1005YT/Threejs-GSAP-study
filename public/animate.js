@@ -1,5 +1,5 @@
 setTimeout(() => {
-  gsap.registerPlugin(ScrollTrigger, ScrollSmoother, ScrollToPlugin);
+  gsap.registerPlugin(ScrollTrigger, ScrollSmoother, ScrollToPlugin, SplitText, TextPlugin);
   // use a script tag or an external JS file
 
   let screens = 4;
@@ -10,12 +10,12 @@ setTimeout(() => {
   };
   let initPos = [
     {
-      posX: 0,
-      posY: 20,
+      posX: -10,
+      posY: 15,
       posZ: 30,
-      lookX: 0,
+      lookX: -10,
       lookY: 10,
-      lookZ: 15,
+      lookZ: 10,
     },
     {
       posX: 20,
@@ -24,23 +24,7 @@ setTimeout(() => {
       lookX: 0,
       lookY: 10,
       lookZ: 15,
-    },
-    {
-      posX: 20,
-      posY: 20,
-      posZ: 30,
-      lookX: 0,
-      lookY: 10,
-      lookZ: 15,
-    },
-    {
-      posX: 16,
-      posY: 18,
-      posZ: 30,
-      lookX: 0,
-      lookY: 10,
-      lookZ: 0,
-    },
+    }
   ];
 
   let smoother = ScrollSmoother.create({
@@ -55,11 +39,7 @@ setTimeout(() => {
 
   screensEls.forEach((screen, i) => {
     const id = screen.id;
-    if (i % 2 === 0) {
-      gsap.set(screen, { xPercent: -100 });
-    } else {
-      gsap.set(screen, { xPercent: 100 });
-    }
+    gsap.set(screen, { xPercent: -100 });
     gsap.to(screen, {
       xPercent: 0,
       id: "example",
@@ -69,7 +49,6 @@ setTimeout(() => {
         onUpdate: (self) => {
           animate(self);
         },
-        // markers: true,
         scrub: true,
       },
     });
@@ -80,27 +59,38 @@ setTimeout(() => {
     switch (self.trigger.id) {
       case "s1":
         break;
-        case "s2":
+      case "s2":
         infos.stage = 0;
         newvalue = { ...initPos[infos.stage] };
         newvalue.posX = initPos[infos.stage].posX + infos.progress * 0.2;
         window.scene.onSwitchCamera(newvalue);
         infos.stage = 1;
         break;
-      case "s3":
-        infos.stage = 2;
-        newvalue = { ...initPos[infos.stage] };
-        newvalue.posX = initPos[infos.stage].posX + infos.progress * -0.4;
-        window.scene.onSwitchCamera(newvalue);
-        break;
-      case "s4":
-        infos.stage = 3;
-        newvalue = { ...initPos[infos.stage] };
-        newvalue.posY = initPos[infos.stage].posY + infos.progress * -0.4;
-        newvalue.posX = initPos[infos.stage].posX + infos.progress * -0.4;
-        newvalue.posZ = initPos[infos.stage].posZ + infos.progress * -0.4;
-        window.scene.onSwitchCamera(newvalue);
-        break;
     }
   }
+  let textos = SplitText.create(".text", {
+    type: "words"
+  });
+  let highlight = SplitText.create(".highlight", {
+    type: "chars"
+  });
+
+  gsap.from(textos.words, {
+    x: -100,
+    y: 0,
+    opacity: 0,
+    stagger: {
+      amount: 0.1,
+      from: "random",
+    }
+  });
+  gsap.from(highlight.chars, {
+    y: 100,
+    opacity: 0,
+    stagger: {
+      amount: 0.5,
+      from: "start",
+    }
+  });
+
 }, 1000);
