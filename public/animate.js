@@ -1,9 +1,12 @@
 setTimeout(() => {
-  gsap.registerPlugin(ScrollTrigger, ScrollSmoother, ScrollToPlugin, SplitText, TextPlugin);
-  // use a script tag or an external JS file
+  gsap.registerPlugin(
+    ScrollTrigger,
+    ScrollSmoother,
+    ScrollToPlugin,
+    SplitText,
+    TextPlugin
+  );
 
-  let screens = 4;
-  const currentScreen = 0;
   let infos = {
     stage: 0,
     progress: 0,
@@ -24,14 +27,14 @@ setTimeout(() => {
       lookX: 0,
       lookY: 10,
       lookZ: 15,
-    }
+    },
   ];
 
   let smoother = ScrollSmoother.create({
     wrapper: "#smooth-wrapper",
     content: "#ui",
-    smooth: 1, // how long (in seconds) it takes to "catch up" to the native scroll position
-    effects: true, // looks for data-speed and data-lag attributes on elements
+    smooth: 1,
+    effects: true,
     smoothTouch: 0.1,
   });
 
@@ -42,7 +45,6 @@ setTimeout(() => {
     gsap.set(screen, { xPercent: -100 });
     gsap.to(screen, {
       xPercent: 0,
-      id: "example",
       scrollTrigger: {
         trigger: screen,
         end: "top",
@@ -69,10 +71,10 @@ setTimeout(() => {
     }
   }
   let textos = SplitText.create(".text", {
-    type: "words"
+    type: "words",
   });
   let highlight = SplitText.create(".highlight", {
-    type: "chars"
+    type: "chars",
   });
 
   gsap.from(textos.words, {
@@ -82,15 +84,15 @@ setTimeout(() => {
     stagger: {
       amount: 0.1,
       from: "random",
-    }
+    },
   });
+
   gsap.from(highlight.chars, {
     y: 100,
     opacity: 0,
     stagger: {
       amount: 0.5,
       from: "start",
-    }
+    },
   });
-
 }, 1000);
