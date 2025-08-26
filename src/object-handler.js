@@ -2,9 +2,9 @@ import * as THREE from "three";
 
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 
-import { ModelsLoader } from "./models-loader";
-import { MeshLoader } from "./meshs";
-import { ObjectPreset } from "./object-presets";
+import { ModelsLoader } from "./models-loader.js";
+import { MeshLoader } from "./meshs.js";
+import { ObjectPreset } from "./object-presets.js";
 
 export function objectHandler(scene) {
   const loader = new GLTFLoader();
