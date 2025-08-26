@@ -5,8 +5,8 @@ import {
   CSS2DObject,
 } from "three/examples/jsm/renderers/CSS2DRenderer.js";
 
-import { objectHandler } from "./object-handler";
-import { createCamera } from "./camera";
+import { objectHandler } from "./object-handler.js";
+import { createCamera } from "./camera.js";
 
 export function createScene() {
   // Inicalizar cena
