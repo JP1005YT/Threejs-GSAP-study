@@ -92,6 +92,9 @@
               tecnologias representa o próximo passo na forma como interagimos
               com o conteúdo na internet.
             </p>
+            <button id="freeBtn">
+              Modo livre
+            </button>
           </div>
         </section>
       </div>
@@ -133,6 +136,10 @@
           },
           false
         );
+        document.getElementById("freeBtn").addEventListener("click", () => {
+          document.querySelector("#smooth-wrapper").remove()
+          window.scene.turnOnCamera()
+        });
 
         window.scene.start();
         window.scene.onSwitchCamera({

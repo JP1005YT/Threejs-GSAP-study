@@ -9,12 +9,10 @@ import { ObjectPreset } from "./object-presets";
 export function objectHandler(scene) {
   const loader = new GLTFLoader();
   const objectPresenter = new ObjectPreset();
-  let pot; // Variável para armazenar o objeto pot
+  let pot;
   let fire, fire2;
 
-  ModelsLoader(scene, "caveira").then((loadedCaveira) => {
-    // pot = loadedCaveira
-  });
+  ModelsLoader(scene, "caveira").then((loadedCaveira) => {});
   ModelsLoader(scene, "queixo").then((loadedCaveira) => {
     pot = loadedCaveira;
   });
@@ -44,7 +42,7 @@ export function objectHandler(scene) {
 
   const clock = new THREE.Clock();
 
-  let invert = false; // Move invert outside update to persist its state
+  let invert = false;
   let isActive = false;
 
   setInterval(() => {
